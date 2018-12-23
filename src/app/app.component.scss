@@ -1,0 +1,28 @@
+@import './../variables.scss';
+
+header {
+  height: 60px;
+  background: #2E3141;
+
+  nav {
+    display: flex;
+    align-items: center;
+    height: inherit;
+
+    a {
+      margin: 0 1em;
+      text-decoration: none;
+      color: $white-color;
+      cursor: pointer;
+    }
+  }
+}
+
+
+main {
+  position: relative;
+  height: 84vh;
+  background: white;
+}
+
+footer {}
