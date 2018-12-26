@@ -16,27 +16,39 @@ Start with learn mode and practice the words which you have learned with Practic
 * Word List Marketplace
 
 ## Prerequisites
-    Before you begin, make sure your development environment includes Node.js®,  and Angular CLI.
+Before you begin, make sure your development environment includes Node.js®,  and Angular CLI.
+
 ### Node.js
 Angular requires Node.js version 8.x or 10.x.
 * To check your version, run node -v in a terminal/console window.
 * To get Node.js, go to [nodejs.org](https://nodejs.org/en/). 
+
 ### Install the Angular CLI
 You use the Angular CLI to create projects, generate application and library code, and perform a variety of ongoing development tasks such as testing, bundling, and deployment.
 Install the Angular CLI globally
 To install the CLI using npm, open a terminal/console window and enter the following command:
-> npm install -g @angular/cli
+``` 
+npm install -g @angular/cli
+```
 
 ## Develop
 * Getting Started
     * Clone the project  [word-list-web](https://github.com/dragonriders/word-list-web.git) using
-    > git clone https://github.com/dragonriders/word-list-web.git
+    ``` 
+    git clone https://github.com/dragonriders/word-list-web.git 
+    ```
     * After cloning the project, switch to project directory i.e word-list-web using command
-    > cd word-list-web
+    ```
+    cd word-list-web
+    ```
     * Install the dependencies of the application using command
-    > npm install 
+    ```
+    npm install
+    ```
     * To start the application run the command (make sure your current directory is 'word-list-web' to run the application)  
-    > ng serve --open 
+    ```
+    ng serve --open
+    ```
 * Development server
     * Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
