@@ -1,3 +1,11 @@
 $font-stack: sans-serif;
 $primary-color: black;
 $white-color:white;
+
+$grid-breakpoints: (xxs: 320px,
+xs:480px,
+sm: 576px,
+md: 768px,
+lg: 992px,
+xl: 1200px,
+)

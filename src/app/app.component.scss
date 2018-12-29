@@ -3,6 +3,8 @@
 header {
   height: 60px;
   background: #2E3141;
+  position: fixed;
+  width: 100%;
 
   nav {
     display: flex;
@@ -18,11 +20,13 @@ header {
   }
 }
 
-
-main {
+.rout-comp {
   position: relative;
-  height: 84vh;
-  background: white;
+  top: 60px;
 }
 
-footer {}
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
