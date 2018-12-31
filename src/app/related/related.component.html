@@ -3,6 +3,22 @@
   <div class="left-pane">
   </div>
   <div class="right-pane">
-    <p>related</p>
+    <div class="right-container">
+      <div class="search-query">
+        <input [(ngModel)]="searchQuery" (ngModelChange)='queryChanged($event)' type="text" placeholder="enter the word...">
+      </div>
+      <div class="results">
+        <div class="filter-nav">
+          <ul>
+            <li *ngFor="let tab of selectedFilterTab" (click)="selectTab(tab)" [class.selected]="tab.selected">{{tab.type}}</li>
+          </ul>
+        </div>
+        <div class="words">
+          <ul>
+            <li *ngFor="let w of searchResults">{{w.word}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

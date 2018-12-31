@@ -1,4 +1,6 @@
 .related {
+  height: 100%;
+
   .left-pane {
     display: inline-block;
     width: 30%;
@@ -7,5 +9,71 @@
   .right-pane {
     display: inline-block;
     width: 70%;
+    height: 80vh;
+
+    .right-container {
+      height: 100%;
+    }
+
+    .search-query {
+      margin: 1em 0;
+      height: 10%;
+
+      input {
+        width: 60%;
+        height: 3em;
+      }
+    }
+
+    .results {
+      height: 85%;
+
+      .filter-nav {
+        ul {
+          list-style-type: none;
+          display: flex;
+          flex-wrap: wrap;
+          padding: 0;
+
+          li {
+            border-top: 1px solid black;
+            border-left: 1px solid black;
+            border-bottom: 1px solid black;
+            // margin: 0.5em;
+            padding: 0.5em;
+            display: inline-block;
+          }
+
+          li:last-child {
+            border-right: 1px solid black;
+          }
+        }
+
+        .selected {
+          background: #0299C6;
+        }
+      }
+
+      .words {
+        height: inherit;
+        overflow-y: auto;
+
+        ul {
+          list-style-type: none;
+          display: flex;
+          flex-wrap: wrap;
+          padding: 0;
+
+          li {
+            border: 1px solid black;
+            border-radius: 10px;
+            margin: 0.5em;
+            padding: 0.5em;
+            display: inline-block;
+          }
+        }
+
+      }
+    }
   }
 }

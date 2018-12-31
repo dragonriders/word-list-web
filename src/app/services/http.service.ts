@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
+
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,11 @@ export class HttpService {
   constructor(private http: HttpClient) { }
 
   get(url, options?) {
-    return this.http.get(url, options);
+    let params: HttpParams;
+    if (options) {
+      params = new HttpParams({ fromObject: options });
+    }
+    return this.http.get(url, { params });
   }
 
   post(url, body) {
