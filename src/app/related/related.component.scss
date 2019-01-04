@@ -1,27 +1,120 @@
+@import './../../variables';
+
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 768px to 1200px
+*/
+@media screen and (min-width:map-get($grid-breakpoints, md)) {
+  .related {
+    height: 100%;
+
+    .left-pane {
+      width: 30%;
+    }
+
+    .right-pane {
+      width: 70%;
+
+      .right-container {
+        height: 100%;
+      }
+
+      .search-query {
+        height: 10%;
+
+        input {
+          width: 60%
+        }
+      }
+
+      .results {
+        height: 85%;
+
+        .words {
+          width: 80%;
+          border: 1px solid;
+        }
+      }
+    }
+  }
+}
+
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 480px
+*/
+
+@media screen and (orientation:portrait) and (min-width:map-get($grid-breakpoints, xxs))and (max-width:map-get($grid-breakpoints, xs)) {
+  .related {
+    height: 100%;
+
+    .left-pane {
+      width: 0;
+    }
+
+    .right-pane {
+      width: 100%;
+
+      .right-container {
+        height: 100%;
+      }
+
+      .search-query {
+        height: 10%;
+
+        input {
+          width: 100%
+        }
+      }
+
+      .results {
+        height: 85%;
+
+        .filter-nav {
+          ul {
+            justify-content: center;
+
+            li {
+              font-size: 0.8em;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
 .related {
-  height: 100%;
+  // height: 100%;
 
   .left-pane {
     display: inline-block;
-    width: 30%;
+    // width: 30%;
   }
 
   .right-pane {
     display: inline-block;
-    width: 70%;
+    // width: 70%;
     height: 80vh;
 
     .right-container {
-      height: 100%;
+      // height: 100%;
     }
 
     .search-query {
       margin: 1em 0;
-      height: 10%;
+      // height: 10%;
 
       input {
-        width: 60%;
+        // width: 60%;
         height: 3em;
+        // outline: ;
+        border-radius: 10px;
       }
     }
 
@@ -58,6 +151,23 @@
         height: inherit;
         overflow-y: auto;
 
+        &::-webkit-scrollbar {
+          width: 0.25em;
+        }
+
+        &::-webkit-scrollbar-track {
+          -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: rgb(238, 169, 79);
+        }
+
+        .loading-spinner {
+          display: flex;
+          justify-content: center;
+        }
+
         ul {
           list-style-type: none;
           display: flex;
@@ -72,7 +182,6 @@
             display: inline-block;
           }
         }
-
       }
     }
   }

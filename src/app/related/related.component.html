@@ -14,7 +14,11 @@
           </ul>
         </div>
         <div class="words">
-          <ul>
+          <div *ngIf="showSpinner" class="loading-spinner">
+            <mat-progress-spinner class="example-margin" [color]="color" [mode]="mode" [value]="value">
+            </mat-progress-spinner>
+          </div>
+          <ul *ngIf="!showSpinner">
             <li *ngFor="let w of searchResults">{{w.word}}</li>
           </ul>
         </div>

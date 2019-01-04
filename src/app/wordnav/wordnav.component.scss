@@ -1,7 +1,51 @@
+@import './../../variables';
+
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 768px to 1200px
+*/
+@media screen and (min-width:map-get($grid-breakpoints, md)) {
+  .word-list-nav {
+    width: 56%;
+    margin: 0 30%;
+
+    ul {
+      margin: 0 1em;
+
+      li {
+        margin: 0 1em;
+      }
+    }
+  }
+}
+
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 480px
+*/
+
+@media screen and (orientation:portrait) and (min-width:map-get($grid-breakpoints, xxs))and (max-width:map-get($grid-breakpoints, xs)) {
+  .word-list-nav {
+    width: 100%;
+    margin: 0%;
+
+    ul {
+      display: flex;
+      justify-content: space-between;
+      margin: 0 0.5em;
+
+      li {
+        margin: 0;
+      }
+    }
+  }
+}
+
 .word-list-nav {
   height: 2em;
-  width: 56%;
-  margin: 0 30%;
+  // width: 56%;
+  // margin: 0 30%;
   padding-top: 1em;
   border-bottom: 1px solid grey;
   border-radius: 10px;
@@ -9,10 +53,10 @@
   ul {
     list-style-type: none;
     padding: 0;
-    margin: 0;
+    // margin: 0;
 
     li {
-      margin: 0 1em;
+      // margin: 0 1em;
       display: inline-block;
       cursor: pointer;
       outline: none;

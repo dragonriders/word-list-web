@@ -24,6 +24,9 @@ export class RelatedComponent implements OnInit {
     { type: 'Trigger', selected: false, query: 'rel_trg' },
     { type: 'Rhyming', selected: false, query: 'rel_rhy' }];
 
+  color = 'primary';
+  mode = 'indeterminate';
+  showSpinner: boolean;
   constructor(private http: HttpService) { }
 
   ngOnInit() {
@@ -36,7 +39,9 @@ export class RelatedComponent implements OnInit {
       )
       .subscribe(search => {
         const query = this.selectedTab['query'];
+        this.showSpinner = true;
         this.http.get(APP_URLS.RELATED_URL, { [query]: search }).subscribe((results: Object[]) => {
+          this.showSpinner = false;
           this.searchResults = results;
         });
       }, (error) => {
@@ -46,7 +51,9 @@ export class RelatedComponent implements OnInit {
 
 
   queryChanged(search: string) {
-    this.searchQueryChecker.next(search);
+    if (search && search.length) {
+      this.searchQueryChecker.next(search);
+    }
   }
 
   selectTab(tab) {
