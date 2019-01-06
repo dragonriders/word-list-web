@@ -1,31 +1,24 @@
 <main role="main" class="app-main">
   <div class="app-main-front">
-    <app-wordnav></app-wordnav>
     <div class="left-pane"></div>
     <div class="right-pane">
       <div class="wordlist-actions">
-        <div class="wordlist-create">
-          <button>Create Word List</button>
+        <div *ngIf="!wordListCreateFlag" class="wordlist-create">
+          <button (click)="setWordListFlag()">Create Word List</button>
+        </div>
+        <div class="wordlist-input" *ngIf="wordListCreateFlag">
+          <div class="wordlist-box">
+            <input type="text" [(ngModel)]="wordListInput">
+            <div class="wordlist-box-actions">
+              <button (click)="createWordList()">create</button>
+              <button (click)="setWordListFlag()">cancel</button>
+            </div>
+          </div>
         </div>
       </div>
       <div class="word-list-container">
-        <div>
-          <h4>My Word List 1</h4>
-        </div>
-        <div>
-          <h4>My Word List 1</h4>
-        </div>
-        <div>
-          <h4>My Word List 2</h4>
-        </div>
-        <div>
-          <h4>My Word List 3</h4>
-        </div>
-        <div>
-          <h4>My Word List 4</h4>
-        </div>
-        <div>
-          <h4>My Word List 4</h4>
+        <div *ngFor="let word of sampleList" (click)="selectedWordList(word)">
+          <h4>{{word.name}}</h4>
         </div>
       </div>
     </div>

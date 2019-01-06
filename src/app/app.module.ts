@@ -11,6 +11,7 @@ import { PracticeComponent } from './practice/practice.component';
 import { WordnavComponent } from './wordnav/wordnav.component';
 import { RelatedComponent } from './related/related.component';
 import { MarketplaceComponent } from './marketplace/marketplace.component';
+import { WordListComponent } from './word-list/word-list.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { MarketplaceComponent } from './marketplace/marketplace.component';
     WordnavComponent,
     RelatedComponent,
     MarketplaceComponent,
+    WordListComponent,
 
   ],
   imports: [

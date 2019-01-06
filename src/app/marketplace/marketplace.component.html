@@ -1,9 +1,27 @@
 <div class="marketplace">
-  <app-wordnav></app-wordnav>
   <div class="left-pane">
 
   </div>
   <div class="right-pane">
-    <p>market place</p>
+    <!-- <p>market place</p> -->
+    <!-- <div class="wordlist-actions">
+      <div *ngIf="!wordListCreateFlag" class="wordlist-create">
+        <button (click)="setWordListFlag()">Create Word List</button>
+      </div>
+      <div class="wordlist-input" *ngIf="wordListCreateFlag">
+        <div class="wordlist-box">
+          <input type="text">
+          <div class="wordlist-box-actions">
+            <button>create</button>
+            <button (click)="setWordListFlag()">cancel</button>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <div class="word-list-container">
+      <div *ngFor="let list of marketPlaceList">
+        <h4>{{list.name}}</h4>
+      </div>
+    </div>
   </div>
 </div>

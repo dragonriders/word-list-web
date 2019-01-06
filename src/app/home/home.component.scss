@@ -1,5 +1,9 @@
 @import './../../variables';
 
+// div {
+//   border: 1px solid black;
+// }
+
 /* 
   ##Device = Laptops, Desktops
   ##Screen = B/w 768px to 1200px
@@ -8,22 +12,46 @@
   main {
     .left-pane {
       width: 30%;
+      float: left;
     }
 
     .right-pane {
       width: 70%;
+      float: right;
 
       .wordlist-actions {
         width: 80%;
+        height: 5em;
 
         .wordlist-create {
           float: right;
           margin: 1em 0;
 
           button {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
+            width: 10em;
+            height: 3em;
+            border-radius: 0.5em;
+          }
+        }
+
+        .wordlist-input {
+          width: 100%;
+          margin: 1em 0;
+
+          .wordlist-box {
+            display: flex;
+            justify-content: center;
+
+            input {
+              width: 80%;
+              height: 2.6em;
+            }
+
+            button {
+              width: 5em;
+              height: 3.1em;
+              cursor: pointer;
+            }
           }
         }
       }
@@ -66,6 +94,29 @@
             width: 95%;
             height: 3em;
             border-radius: 5px;
+            cursor: pointer;
+          }
+        }
+
+        .wordlist-input {
+          display: flex;
+          justify-content: center;
+
+          .wordlist-box {
+            width: 90%;
+
+            input {
+              width: 99%;
+              height: 3em;
+              margin: 0.2em 0;
+            }
+
+            .wordlist-box-actions {
+              button {
+                width: 50%;
+                cursor: pointer;
+              }
+            }
           }
         }
       }
@@ -117,8 +168,12 @@ main {
       .wordlist-actions {
 
         .wordlist-create {
-          button {}
+          button {
+            cursor: pointer;
+          }
         }
+
+        .wordlist-input {}
       }
 
       .word-list-container {

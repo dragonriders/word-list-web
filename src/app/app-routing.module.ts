@@ -4,13 +4,14 @@ import { HomeComponent } from './home/home.component';
 import { PracticeComponent } from './practice/practice.component';
 import { RelatedComponent } from './related/related.component';
 import { MarketplaceComponent } from './marketplace/marketplace.component';
+import { WordListComponent } from './word-list/word-list.component';
 
 const routes: Routes = [
   {
     path: '', redirectTo: 'home', pathMatch: 'full'
   },
   {
-    path: 'home', component: HomeComponent,
+    path: 'home', component: HomeComponent
   },
   {
     path: 'practice', component: PracticeComponent,
@@ -20,6 +21,9 @@ const routes: Routes = [
   },
   {
     path: 'marketplace', component: MarketplaceComponent
+  },
+  {
+    path: ':id', component: WordListComponent
   }
 ];
 
