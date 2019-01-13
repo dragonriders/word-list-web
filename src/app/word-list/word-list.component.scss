@@ -6,6 +6,8 @@
 */
 @media screen and (min-width:map-get($grid-breakpoints, md)) {
   .wordlist {
+    margin: 1em;
+
     .left-pane {
       width: 30%;
       float: left;
@@ -15,7 +17,107 @@
       width: 70%;
       float: right;
     }
+
+    .words {
+      width: 40%;
+      height: 72vh;
+      overflow-y: auto;
+      display: inline-block;
+
+      &::-webkit-scrollbar {
+        width: 0.25em;
+      }
+
+      &::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: rgb(238, 169, 79);
+      }
+
+      .word-title {
+        height: 4em;
+
+        p {
+          margin: 0;
+        }
+      }
+
+      .word-items {
+
+        .word-box:first-child {
+          border-top: 1px solid #e7e7e7;
+        }
+
+        .word-box {
+          border-bottom: 1px solid #e7e7e7;
+
+          .word {
+            height: 5em;
+
+            .word-active {
+              width: 4px;
+              height: 100%;
+              display: inline-block;
+              float: left;
+              background: #00A1DF;
+            }
+
+            .word-content {
+              padding: 0 1em;
+              display: inline-block;
+            }
+          }
+        }
+      }
+    }
+
+    .word-description {
+      width: 60%;
+      height: 72vh;
+      float: right;
+      display: inline-block;
+      background: #EAEAEA;
+
+      .word-desc-head {
+        height: 4em;
+
+        p {
+          margin: 0;
+        }
+
+        .word-desc-name {
+          padding: 0 1em;
+          font-size: 2em;
+          display: inline-block;
+          width: 70%;
+        }
+
+        .word-desc-next {
+          display: inline-block;
+          width: 8%;
+          float: right;
+
+          i {
+            font-size: 2em;
+          }
+        }
+
+        .word-desc-type {
+          display: inline-block;
+          padding: 0 1em;
+          width: 15%;
+        }
+
+        .word-desc-pron {
+          display: inline-block;
+          // width: 50%
+        }
+      }
+    }
   }
+
 }
 
 

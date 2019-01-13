@@ -1,4 +1,53 @@
 <div class="wordlist">
-  <div class="left-pane"></div>
-  <div class="right-pane"></div>
+  <!-- <div class="left-pane"></div> -->
+  <!-- <div class="right-pane"> -->
+  <!-- <div class="word">
+      <p>{{wordlist[currentWordIndex].name | json}}</p>
+      <p>{{wordlist[currentWordIndex].type | json}}</p>
+      <p>{{wordlist[currentWordIndex].pronunciation | json}}</p>
+      <p>{{wordlist[currentWordIndex].information | json}}</p>
+      <p>{{wordlist[currentWordIndex].mnemonic | json}}</p>
+    </div> -->
+  <!-- </div> -->
+  <div class="words">
+    <div class="word-title">
+      <p> My words {{wordlistname}}</p>
+    </div>
+    <div class="word-items">
+      <div class="word-box" *ngFor="let word of wordlist;let i = index">
+        <div class="word" *ngIf="word.name.trim().length > 1" (click)="activeWord(word,i)">
+          <div class="word-active" *ngIf="currentWordIndex == i"></div>
+          <div class="word-content">
+            <p>{{word.name}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="word-description">
+    <div class="word-desc-head">
+      <div class="word-desc-name">
+        <p>{{wordlist[currentWordIndex].name }}</p>
+      </div>
+      <div class="word-desc-next">
+        <mat-icon>
+          <i class="material-icons">trending_flat</i>
+        </mat-icon>
+      </div>
+      <div class="word-desc-type">
+        <p>{{wordlist[currentWordIndex].type }}</p>
+      </div>
+      <div class="word-desc-pron">
+        <p>{{wordlist[currentWordIndex].pronunciation }}</p>
+      </div>
+    </div>
+    <div class="word-desc-info">
+      <div>
+        <p>information:{{wordlist[currentWordIndex].information }}</p>
+      </div>
+      <div>
+        <p>information:{{wordlist[currentWordIndex].mnemonic }}</p>
+      </div>
+    </div>
+  </div>
 </div>

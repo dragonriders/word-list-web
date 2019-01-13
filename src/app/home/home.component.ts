@@ -23,6 +23,10 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.http.get(APP_URLS.MARKETPLACE_URL).subscribe((sampleList: any) => {
       this.sampleList = sampleList;
+      this.sampleList.unshift({
+        name: 'default list',
+        sha: '9a304cf0cb4d63718bbf989346ae9b9adf37defa'
+      });
     }, (error) => {
 
     });
@@ -40,7 +44,6 @@ export class HomeComponent implements OnInit {
   }
 
   selectedWordList(wordList) {
-    alert(JSON.stringify(wordList));
     this.router.navigate([wordList.sha]);
   }
 }
