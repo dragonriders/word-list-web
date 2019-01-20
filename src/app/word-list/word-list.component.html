@@ -1,18 +1,29 @@
-<div class="wordlist">
-  <!-- <div class="left-pane"></div> -->
-  <!-- <div class="right-pane"> -->
-  <!-- <div class="word">
-      <p>{{wordlist[currentWordIndex].name | json}}</p>
-      <p>{{wordlist[currentWordIndex].type | json}}</p>
-      <p>{{wordlist[currentWordIndex].pronunciation | json}}</p>
-      <p>{{wordlist[currentWordIndex].information | json}}</p>
-      <p>{{wordlist[currentWordIndex].mnemonic | json}}</p>
-    </div> -->
-  <!-- </div> -->
-  <div class="words">
-    <div class="word-title">
-      <p> My words {{wordlistname}}</p>
+<div *ngIf="selectedModeIndex <= 0 " class="wordlist-actions">
+  <div class="wordlist-actions-description">
+    <p class="selected-wordlist-name">Selected wordlist is {{wordlistname}}</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A, voluptatum quod, tempora asperiores, recusandae
+      libero
+      dicta iure in labore quam facere laborum tempore reprehenderit distinctio vero rerum! Praesentium, officia
+      nesciunt!</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam harum, numquam explicabo eligendi consectetur
+      recusandae dolor quo nulla excepturi. Corrupti odio hic consequuntur esse perferendis inventore laudantium
+      necessitatibus temporibus nostrum.</p>
+  </div>
+  <div class="wordlist-actions-container-btn">
+    <div class="wordlist-practice-blk">
+      <button (click)="selectMode(0)">Practice</button>
     </div>
+    <div class="wordlist-learn-blk">
+      <button (click)="selectMode(1)">Learn</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="selectedModeIndex == 1" class="wordlist">
+  <div class="word-title">
+    <p> My words {{wordlistname}}</p>
+  </div>
+  <div class="words">
     <div class="word-items">
       <div class="word-box" *ngFor="let word of wordlist;let i = index">
         <div class="word" *ngIf="word.name.trim().length > 1" (click)="activeWord(word,i)">
@@ -27,18 +38,14 @@
   <div class="word-description">
     <div class="word-desc-head">
       <div class="word-desc-name">
-        <p>{{wordlist[currentWordIndex].name }}</p>
+        <p class="word-desc-word-name">{{wordlist[currentWordIndex].name }}</p>
+        <p class="word-desc-type">{{wordlist[currentWordIndex].type }}</p>
+        <p class="word-desc-pron">{{wordlist[currentWordIndex].pronunciation }}</p>
       </div>
       <div class="word-desc-next">
-        <mat-icon>
-          <i class="material-icons">trending_flat</i>
-        </mat-icon>
-      </div>
-      <div class="word-desc-type">
-        <p>{{wordlist[currentWordIndex].type }}</p>
-      </div>
-      <div class="word-desc-pron">
-        <p>{{wordlist[currentWordIndex].pronunciation }}</p>
+        <i class="material-icons" (click)="wordPrev()">keyboard_arrow_left</i>
+        <i class="material-icons" (click)="wordNext()">keyboard_arrow_right</i>
+        <span class="word-index">{{currentWordIndex}}</span>
       </div>
     </div>
     <div class="word-desc-info">

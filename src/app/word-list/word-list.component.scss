@@ -5,8 +5,49 @@
   ##Screen = B/w 768px to 1200px
 */
 @media screen and (min-width:map-get($grid-breakpoints, md)) {
+
+  .wordlist-actions {
+    width: 600px;
+    height: 4em;
+    margin: 10% auto;
+
+
+    .wordlist-actions-description {}
+
+    .wordlist-actions-container-btn {
+      display: flex;
+      justify-content: space-evenly;
+
+      .wordlist-practice-blk,
+      .wordlist-learn-blk {
+        width: 40%;
+        height: 5em;
+
+        button {
+          cursor: pointer;
+          color: white;
+          font-size: 2em;
+          border: none;
+          background: #2271B3;
+          width: 100%;
+          height: 100%;
+          border-radius: 40px;
+        }
+
+        button:focus {
+          outline: none;
+        }
+
+        button:hover {
+          transform: scale(1.2);
+        }
+      }
+    }
+  }
+
   .wordlist {
-    margin: 1em;
+    margin: 1em 6em;
+    // border: 1px solid black;
 
     .left-pane {
       width: 30%;
@@ -18,8 +59,17 @@
       float: right;
     }
 
+    .word-title {
+      height: 4em;
+
+      p {
+        padding: 1em;
+        margin: 0;
+      }
+    }
+
     .words {
-      width: 40%;
+      width: 20%;
       height: 72vh;
       overflow-y: auto;
       display: inline-block;
@@ -34,14 +84,7 @@
 
       &::-webkit-scrollbar-thumb {
         background-color: rgb(238, 169, 79);
-      }
-
-      .word-title {
-        height: 4em;
-
-        p {
-          margin: 0;
-        }
+        height: 4.2em;
       }
 
       .word-items {
@@ -55,6 +98,7 @@
 
           .word {
             height: 5em;
+            cursor: pointer;
 
             .word-active {
               width: 4px;
@@ -74,14 +118,15 @@
     }
 
     .word-description {
-      width: 60%;
+      width: 80%;
       height: 72vh;
       float: right;
       display: inline-block;
-      background: #EAEAEA;
+      background: white;
 
       .word-desc-head {
         height: 4em;
+        margin: 1em 2em;
 
         p {
           margin: 0;
@@ -89,31 +134,43 @@
 
         .word-desc-name {
           padding: 0 1em;
-          font-size: 2em;
           display: inline-block;
           width: 70%;
-        }
 
-        .word-desc-next {
-          display: inline-block;
-          width: 8%;
-          float: right;
-
-          i {
+          .word-desc-word-name {
             font-size: 2em;
           }
         }
 
-        .word-desc-type {
+        .word-desc-next {
           display: inline-block;
-          padding: 0 1em;
-          width: 15%;
+          width: 10%;
+          float: right;
+
+          i {
+            font-size: 2em;
+            cursor: pointer;
+          }
         }
 
+        .word-desc-type {
+          margin-right: 1em;
+        }
+
+        .word-desc-type,
         .word-desc-pron {
           display: inline-block;
-          // width: 50%
+          padding: 0 1em;
+          border: 1px solid black;
+          border-radius: 10px;
+          padding: 0 1em;
+          font-size: 18px;
+          opacity: 0.6;
         }
+      }
+
+      .word-desc-info {
+        padding: 1em;
       }
     }
   }

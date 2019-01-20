@@ -18,7 +18,12 @@ export class WordListComponent implements OnInit {
   wordlist: Observable<any>[];
   currentWordIndex: number;
   wordlistname: string;
-  constructor(private route: ActivatedRoute, private http: HttpService) { }
+  modes: string[] = ['practice', 'learn'];
+  selectedModeIndex: number;
+
+  constructor(private route: ActivatedRoute, private http: HttpService) {
+    this.selectedModeIndex = -1;
+  }
 
   ngOnInit() {
     this.currentWordIndex = 0;
@@ -49,5 +54,21 @@ export class WordListComponent implements OnInit {
 
   activeWord(word, index) {
     this.currentWordIndex = index;
+  }
+
+  wordNext() {
+    if (this.wordlist.length > this.currentWordIndex + 1) {
+      this.currentWordIndex = this.currentWordIndex + 1;
+    }
+  }
+
+  wordPrev() {
+    if (this.currentWordIndex - 1 >= 0) {
+      this.currentWordIndex = this.currentWordIndex - 1;
+    }
+  }
+
+  selectMode(index: number) {
+    this.selectedModeIndex = index;
   }
 }
