@@ -1,15 +1,16 @@
 <div class="related">
-  <div class="left-pane">
-  </div>
+  <!-- <div class="left-pane">
+  </div> -->
   <div class="right-pane">
     <div class="right-container">
-      <div class="search-query">
+      <!-- <div class="search-query">
         <input [(ngModel)]="searchQuery" (ngModelChange)='queryChanged($event)' type="text" placeholder="enter the word...">
-      </div>
+      </div> -->
       <div class="results">
         <div class="filter-nav">
-          <ul>
-            <li *ngFor="let tab of selectedFilterTab" (click)="selectTab(tab)" [class.selected]="tab.selected">{{tab.type}}</li>
+          <ul class="breadcrumb">
+            <li *ngFor="let tab of selectedFilterTab" (click)="selectTab(tab)" [class.selected]="tab.selected">
+              <a>{{tab.type}}</a></li>
           </ul>
         </div>
         <div class="words">
@@ -17,8 +18,11 @@
             <mat-progress-spinner class="example-margin" [color]="color" [mode]="mode" [value]="value">
             </mat-progress-spinner>
           </div>
-          <ul *ngIf="!showSpinner">
+          <ul *ngIf="!showSpinner && searchResults?.length">
             <li *ngFor="let w of searchResults">{{w.word}}</li>
+          </ul>
+          <ul *ngIf="!showSpinner && searchResults?.length === 0">
+            <p style="text-align:center">No words Found</p>
           </ul>
         </div>
       </div>

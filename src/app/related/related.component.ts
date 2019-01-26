@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { HttpService } from './../services/http.service';
 import { APP_URLS } from './../constants/urls.endpoints';
-import { log } from 'util';
 
 @Component({
   selector: 'app-related',
@@ -12,7 +11,7 @@ import { log } from 'util';
 })
 export class RelatedComponent implements OnInit {
 
-  searchQuery: string;
+  @Input() searchQuery: string;
   searchQueryChecker: Subject<string> = new Subject<string>();
   searchResults: Object[];
   selectedTab: Object;

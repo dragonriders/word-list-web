@@ -71,4 +71,12 @@ export class WordListComponent implements OnInit {
   selectMode(index: number) {
     this.selectedModeIndex = index;
   }
+
+  sentenceSplitter() {
+    return this.wordlist[this.currentWordIndex]['information'].split('\n\n');
+  }
+
+  mnemonicSplitter() {
+    return this.wordlist[this.currentWordIndex]['mnemonic'].split(/\d\./).slice(1);
+  }
 }

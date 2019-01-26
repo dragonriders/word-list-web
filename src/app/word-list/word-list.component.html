@@ -19,42 +19,91 @@
   </div>
 </div>
 
-<div *ngIf="selectedModeIndex == 1" class="wordlist">
-  <div class="word-title">
-    <p> My words {{wordlistname}}</p>
+<div *ngIf="selectedModeIndex == 1">
+  <div class="selected-desc">
+    <p (click)="selectMode(-1)">Go Back</p>
+    <p>selected Mode is {{modes[selectedModeIndex] || 'default'}}</p>
   </div>
-  <div class="words">
-    <div class="word-items">
-      <div class="word-box" *ngFor="let word of wordlist;let i = index">
-        <div class="word" *ngIf="word.name.trim().length > 1" (click)="activeWord(word,i)">
-          <div class="word-active" *ngIf="currentWordIndex == i"></div>
-          <div class="word-content">
-            <p>{{word.name}}</p>
+  <div class="wordlist">
+    <div class="word-title">
+      <p> My words {{wordlistname}}</p>
+    </div>
+    <div class="words">
+      <div class="word-items">
+        <div class="word-box" *ngFor="let word of wordlist;let i = index">
+          <div class="word" *ngIf="word.name.trim().length > 1" (click)="activeWord(word,i)">
+            <div class="word-active" *ngIf="currentWordIndex == i"></div>
+            <div class="word-content">
+              <p>{{word.name}}</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="word-description">
-    <div class="word-desc-head">
-      <div class="word-desc-name">
-        <p class="word-desc-word-name">{{wordlist[currentWordIndex].name }}</p>
-        <p class="word-desc-type">{{wordlist[currentWordIndex].type }}</p>
-        <p class="word-desc-pron">{{wordlist[currentWordIndex].pronunciation }}</p>
+    <div class="word-description">
+      <div class="word-desc-head">
+        <div class="word-desc-name">
+          <p class="word-desc-word-name">{{wordlist[currentWordIndex].name }}</p>
+          <p class="word-desc-type">{{wordlist[currentWordIndex].type }}</p>
+          <p class="word-desc-pron">{{wordlist[currentWordIndex].pronunciation }}</p>
+        </div>
+        <div class="word-desc-next">
+          <i class="material-icons" (click)="wordPrev()">keyboard_arrow_left</i>
+          <i class="material-icons" (click)="wordNext()">keyboard_arrow_right</i>
+          <!-- <i>{{currentWordIndex}}</i> -->
+          <!-- <span class="word-index">{{currentWordIndex}}</span> -->
+        </div>
       </div>
-      <div class="word-desc-next">
-        <i class="material-icons" (click)="wordPrev()">keyboard_arrow_left</i>
-        <i class="material-icons" (click)="wordNext()">keyboard_arrow_right</i>
-        <span class="word-index">{{currentWordIndex}}</span>
+      <div class="word-desc-info">
+        <div>
+          <p>Definition:</p>
+          <p>{{sentenceSplitter()[0].split(':')[1] }}</p>
+        </div>
+        <div>
+          <p>Usage:</p>
+          <p>{{sentenceSplitter()[1].split(':')[1] }}</p>
+        </div>
+        <div>
+          <p>Related Words:</p>
+          <p>{{sentenceSplitter()[2].split(':')[1] }}</p>
+        </div>
+
+        <div>
+          <p>More Info:</p>
+          <p>{{sentenceSplitter()[3].split(':')[1] }}</p>
+        </div>
+
+        <div>
+          <p>Mnemonics:</p>
+          <p *ngFor="let mnem of mnemonicSplitter();let i = index">
+            {{i+1 + '.' + mnem}}</p>
+        </div>
       </div>
     </div>
-    <div class="word-desc-info">
-      <div>
-        <p>information:{{wordlist[currentWordIndex].information }}</p>
+    <div class="word-info">
+      <div class="actions">
+        <div class="action">
+          <p>Find Related Words</p>
+        </div>
+        <div class="action">
+          <p>Show Image</p>
+        </div>
       </div>
-      <div>
-        <p>information:{{wordlist[currentWordIndex].mnemonic }}</p>
+      <div class="related-breadcrumb">
+        <!-- <ul class="breadcrumb">
+          <li><a href="#">Similar</a></li>
+          <li><a href="#">Antonyms</a></li>
+          <li><a href="#">Describe</a></li>
+          <li><a href="#">Adjective</a></li>
+          <li><a href="#">Trigger</a></li>
+          <li><a href="#">Rhyming</a></li>
+        </ul> -->
+        <div class="breadcrumb-data">
+          <app-related [searchQuery]="wordlist[currentWordIndex].name"></app-related>
+        </div>
       </div>
+
+      <!-- <img src="http://wordinfo.info/webroot/words/images/Augean-1.jpg" alt=""> -->
     </div>
   </div>
 </div>

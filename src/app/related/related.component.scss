@@ -13,7 +13,8 @@
     }
 
     .right-pane {
-      width: 70%;
+      // width: 70%;
+      width: 100%;
 
       .right-container {
         height: 100%;
@@ -31,8 +32,8 @@
         height: 85%;
 
         .words {
-          width: 80%;
-          border: 1px solid;
+          // width: 80%;
+          // border: 1px solid;
         }
       }
     }
@@ -122,28 +123,59 @@
       height: 85%;
 
       .filter-nav {
-        ul {
-          list-style-type: none;
+        // ul {
+        //   list-style-type: none;
+        //   display: flex;
+        //   flex-wrap: wrap;
+        //   padding: 0;
+
+        //   li {
+        //     border-top: 1px solid black;
+        //     border-left: 1px solid black;
+        //     border-bottom: 1px solid black;
+        //     // margin: 0.5em;
+        //     padding: 0.5em;
+        //     display: inline-block;
+        //   }
+
+        //   li:last-child {
+        //     border-right: 1px solid black;
+        //   }
+        // }
+
+        // .selected {
+        //   background: #0299C6;
+        // }
+        ul.breadcrumb {
           display: flex;
           flex-wrap: wrap;
-          padding: 0;
-
-          li {
-            border-top: 1px solid black;
-            border-left: 1px solid black;
-            border-bottom: 1px solid black;
-            // margin: 0.5em;
-            padding: 0.5em;
-            display: inline-block;
-          }
-
-          li:last-child {
-            border-right: 1px solid black;
-          }
+          list-style: none;
+          padding: 8px 14px;
+          margin: 0;
         }
 
-        .selected {
-          background: #0299C6;
+        ul.breadcrumb li {
+          display: inline;
+          font-size: 18px;
+        }
+
+        /* Add a slash symbol (/) before/behind each list item */
+        ul.breadcrumb li+li:before {
+          padding: 8px;
+          color: black;
+          content: "\00bb";
+        }
+
+        /* Add a color to all links inside the list */
+        ul.breadcrumb li a {
+          color: #0275d8;
+          text-decoration: none;
+        }
+
+        /* Add a color on mouse-over */
+        ul.breadcrumb li a:hover {
+          color: #01447e;
+          // text-decoration: underline;
         }
       }
 
@@ -173,11 +205,12 @@
           display: flex;
           flex-wrap: wrap;
           padding: 0;
+          margin: 0;
 
           li {
             border: 1px solid black;
             border-radius: 10px;
-            margin: 0.5em;
+            margin: 0.25em;
             padding: 0.5em;
             display: inline-block;
           }

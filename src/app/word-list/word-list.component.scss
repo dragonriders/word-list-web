@@ -9,7 +9,7 @@
   .wordlist-actions {
     width: 600px;
     height: 4em;
-    margin: 10% auto;
+    margin: 6% auto;
 
 
     .wordlist-actions-description {}
@@ -21,7 +21,7 @@
       .wordlist-practice-blk,
       .wordlist-learn-blk {
         width: 40%;
-        height: 5em;
+        height: 4em;
 
         button {
           cursor: pointer;
@@ -45,31 +45,45 @@
     }
   }
 
+
+  .selected-desc {
+    p {
+      display: inline-block;
+      margin: 0 1em;
+    }
+  }
+
   .wordlist {
-    margin: 1em 6em;
+    margin: 0 0 0 6em;
     // border: 1px solid black;
 
     .left-pane {
       width: 30%;
       float: left;
+      // border: 1px solid black;
+
     }
 
     .right-pane {
       width: 70%;
       float: right;
+      // border: 1px solid black;
+
     }
 
     .word-title {
       height: 4em;
+      // border: 1px solid black;
 
       p {
-        padding: 1em;
+        // padding: 1em;
         margin: 0;
+        font-size: 28px;
       }
     }
 
     .words {
-      width: 20%;
+      width: 15%;
       height: 72vh;
       overflow-y: auto;
       display: inline-block;
@@ -118,14 +132,15 @@
     }
 
     .word-description {
-      width: 80%;
-      height: 72vh;
-      float: right;
+      width: 60%;
+      height: 63vh;
+      // float: right;
       display: inline-block;
       background: white;
+      // overflow-y: auto;
 
       .word-desc-head {
-        height: 4em;
+        height: 14%;
         margin: 1em 2em;
 
         p {
@@ -171,6 +186,64 @@
 
       .word-desc-info {
         padding: 1em;
+        height: 86%;
+        overflow-y: auto;
+      }
+    }
+
+    .word-info {
+      width: 25%;
+      // background: gray;
+      display: inline-block;
+      height: 72vh;
+      float: right;
+
+      .actions {
+        display: flex;
+
+        .action {
+          border: 1px solid black;
+          border-radius: 10px;
+          margin: 0 0.5em;
+
+          p {
+            margin: 0;
+            padding: 0.5em;
+          }
+        }
+      }
+
+      .related-breadcrumb {
+        ul.breadcrumb {
+          display: flex;
+          flex-wrap: wrap;
+          list-style: none;
+          padding: 8px 14px;
+        }
+
+        ul.breadcrumb li {
+          display: inline;
+          font-size: 18px;
+        }
+
+        /* Add a slash symbol (/) before/behind each list item */
+        ul.breadcrumb li+li:before {
+          padding: 8px;
+          color: black;
+          content: "\00bb";
+        }
+
+        /* Add a color to all links inside the list */
+        ul.breadcrumb li a {
+          color: #0275d8;
+          text-decoration: none;
+        }
+
+        /* Add a color on mouse-over */
+        ul.breadcrumb li a:hover {
+          color: #01447e;
+          text-decoration: underline;
+        }
       }
     }
   }
