@@ -111,7 +111,7 @@
           border-bottom: 1px solid #e7e7e7;
 
           .word {
-            height: 5em;
+            height: 3em;
             cursor: pointer;
 
             .word-active {
@@ -188,6 +188,19 @@
         padding: 1em;
         height: 86%;
         overflow-y: auto;
+
+        &::-webkit-scrollbar {
+          width: 0.25em;
+        }
+
+        &::-webkit-scrollbar-track {
+          -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background-color: rgb(238, 169, 79);
+          height: 4.2em;
+        }
       }
     }
 
@@ -197,6 +210,20 @@
       display: inline-block;
       height: 72vh;
       float: right;
+      overflow-y: auto;
+
+      &::-webkit-scrollbar {
+        width: 0.25em;
+      }
+
+      &::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: rgb(238, 169, 79);
+        height: 4.2em;
+      }
 
       .actions {
         display: flex;

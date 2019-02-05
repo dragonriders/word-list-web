@@ -29,9 +29,10 @@
       }
 
       .results {
-        height: 85%;
+        // height: 85%;
 
         .words {
+
           // width: 80%;
           // border: 1px solid;
         }
@@ -70,7 +71,7 @@
       }
 
       .results {
-        height: 85%;
+        // height: 85%;
 
         .filter-nav {
           ul {
@@ -101,7 +102,7 @@
   .right-pane {
     display: inline-block;
     // width: 70%;
-    height: 80vh;
+    // height: 80vh;
 
     .right-container {
       // height: 100%;
@@ -120,7 +121,7 @@
     }
 
     .results {
-      height: 85%;
+      // height: 85%;
 
       .filter-nav {
         // ul {
@@ -180,7 +181,9 @@
       }
 
       .words {
-        height: inherit;
+        // height: inherit;
+        // overflow-y: auto
+        height: 68%;
         overflow-y: auto;
 
         &::-webkit-scrollbar {

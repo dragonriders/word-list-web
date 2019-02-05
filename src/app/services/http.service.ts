@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 
 
 @Injectable({
@@ -9,12 +9,16 @@ export class HttpService {
 
   constructor(private http: HttpClient) { }
 
-  get(url, options?) {
+  get(url, options?, heads?) {
     let params: HttpParams;
+    let headers: HttpHeaders;
     if (options) {
       params = new HttpParams({ fromObject: options });
     }
-    return this.http.get(url, { params });
+    if (heads) {
+      headers = new HttpHeaders(heads);
+    }
+    return this.http.get(url, { headers: headers, params: params });
   }
 
   post(url, body) {

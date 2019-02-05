@@ -82,28 +82,21 @@
     </div>
     <div class="word-info">
       <div class="actions">
-        <div class="action">
+        <div (click)="setInfoMode(0)" class="action">
           <p>Find Related Words</p>
         </div>
-        <div class="action">
+        <div (click)="setInfoMode(1)" class="action">
           <p>Show Image</p>
         </div>
       </div>
-      <div class="related-breadcrumb">
-        <!-- <ul class="breadcrumb">
-          <li><a href="#">Similar</a></li>
-          <li><a href="#">Antonyms</a></li>
-          <li><a href="#">Describe</a></li>
-          <li><a href="#">Adjective</a></li>
-          <li><a href="#">Trigger</a></li>
-          <li><a href="#">Rhyming</a></li>
-        </ul> -->
+      <div *ngIf="infomode == 0" class="related-breadcrumb">
         <div class="breadcrumb-data">
           <app-related [searchQuery]="wordlist[currentWordIndex].name"></app-related>
         </div>
       </div>
-
-      <!-- <img src="http://wordinfo.info/webroot/words/images/Augean-1.jpg" alt=""> -->
+      <div *ngIf="infomode == 1">
+        <img [src]="wordlist[currentWordIndex].imgsrc" alt="">
+      </div>
     </div>
   </div>
 </div>

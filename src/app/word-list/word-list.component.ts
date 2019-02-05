@@ -20,9 +20,11 @@ export class WordListComponent implements OnInit {
   wordlistname: string;
   modes: string[] = ['practice', 'learn'];
   selectedModeIndex: number;
+  infomode: number;
 
   constructor(private route: ActivatedRoute, private http: HttpService) {
     this.selectedModeIndex = -1;
+    this.infomode = 0;
   }
 
   ngOnInit() {
@@ -54,17 +56,20 @@ export class WordListComponent implements OnInit {
 
   activeWord(word, index) {
     this.currentWordIndex = index;
+    this.fetchImage();
   }
 
   wordNext() {
     if (this.wordlist.length > this.currentWordIndex + 1) {
       this.currentWordIndex = this.currentWordIndex + 1;
+      this.fetchImage();
     }
   }
 
   wordPrev() {
     if (this.currentWordIndex - 1 >= 0) {
       this.currentWordIndex = this.currentWordIndex - 1;
+      this.fetchImage();
     }
   }
 
@@ -78,5 +83,19 @@ export class WordListComponent implements OnInit {
 
   mnemonicSplitter() {
     return this.wordlist[this.currentWordIndex]['mnemonic'].split(/\d\./).slice(1);
+  }
+
+  fetchImage() {
+    const word = this.wordlist[this.currentWordIndex]['name'];
+    this.http.get(`${APP_URLS.WORD_IMG_URL}${word}`, null,
+      { headers: { 'Accept': 'application/json' } }).subscribe((image: any) => {
+        this.wordlist[this.currentWordIndex]['imgsrc'] = image.href;
+      }, error => {
+
+      });
+  }
+
+  setInfoMode(val) {
+    this.infomode = val;
   }
 }
