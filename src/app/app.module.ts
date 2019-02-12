@@ -13,6 +13,7 @@ import { RelatedComponent } from './related/related.component';
 import { MarketplaceComponent } from './marketplace/marketplace.component';
 import { WordListComponent } from './word-list/word-list.component';
 import { WordListItemDirective } from './word-list/word-list-item.directive';
+import { ImagePreloadDirective } from './word-list/image-preload.directive';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { WordListItemDirective } from './word-list/word-list-item.directive';
     MarketplaceComponent,
     WordListComponent,
     WordListItemDirective,
+    ImagePreloadDirective,
 
   ],
   imports: [

@@ -73,6 +73,8 @@
 
     .word-title {
       height: 4em;
+      display: flex;
+      align-items: center;
       // border: 1px solid black;
 
       p {
@@ -98,7 +100,7 @@
 
       &::-webkit-scrollbar-thumb {
         background-color: rgb(238, 169, 79);
-        height: 4.2em;
+        height: 3em;
       }
 
       .word-items {
@@ -158,13 +160,27 @@
         }
 
         .word-desc-next {
-          display: inline-block;
-          width: 10%;
+          display: flex;
+          width: 20%;
           float: right;
+          vertical-align: middle;
+          align-items: center;
 
           i {
             font-size: 2em;
             cursor: pointer;
+          }
+
+          .left-arrow {
+            float: left;
+          }
+
+          .word-count {
+            display: inline-block;
+          }
+
+          .right-arrow {
+            float: right;
           }
         }
 
@@ -238,6 +254,13 @@
             padding: 0.5em;
           }
         }
+      }
+
+      .image-not-found {
+        height: 80px;
+        width: 80px;
+        display: inherit;
+        margin: 5em auto;
       }
 
       .related-breadcrumb {

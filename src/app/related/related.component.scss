@@ -124,29 +124,10 @@
       // height: 85%;
 
       .filter-nav {
-        // ul {
-        //   list-style-type: none;
-        //   display: flex;
-        //   flex-wrap: wrap;
-        //   padding: 0;
+        background: #fafafb;
+        color: #6a737c;
+        font-weight: normal;
 
-        //   li {
-        //     border-top: 1px solid black;
-        //     border-left: 1px solid black;
-        //     border-bottom: 1px solid black;
-        //     // margin: 0.5em;
-        //     padding: 0.5em;
-        //     display: inline-block;
-        //   }
-
-        //   li:last-child {
-        //     border-right: 1px solid black;
-        //   }
-        // }
-
-        // .selected {
-        //   background: #0299C6;
-        // }
         ul.breadcrumb {
           display: flex;
           flex-wrap: wrap;
@@ -157,7 +138,7 @@
 
         ul.breadcrumb li {
           display: inline;
-          font-size: 18px;
+          font-size: 16px;
         }
 
         /* Add a slash symbol (/) before/behind each list item */
@@ -169,13 +150,15 @@
 
         /* Add a color to all links inside the list */
         ul.breadcrumb li a {
-          color: #0275d8;
+          // color: #0275d8;
+          cursor: pointer;
           text-decoration: none;
         }
 
         /* Add a color on mouse-over */
         ul.breadcrumb li a:hover {
-          color: #01447e;
+          // color: #01447e;
+          color: #0275d8;
           // text-decoration: underline;
         }
       }
@@ -184,7 +167,18 @@
         // height: inherit;
         // overflow-y: auto
         height: 68%;
+        width: 23%;
+        // margin: 0 1sem;
         overflow-y: auto;
+        position: absolute;
+        background: #fafafb;
+
+        .loading-spinner {
+          margin: 0 auto;
+          width: 200px;
+          // display: flex;
+          // justify-content: center;
+        }
 
         &::-webkit-scrollbar {
           width: 0.25em;
@@ -211,11 +205,13 @@
           margin: 0;
 
           li {
-            border: 1px solid black;
+            // border: 1px solid black;
             border-radius: 10px;
             margin: 0.25em;
-            padding: 0.5em;
+            padding: 0.30em;
             display: inline-block;
+            background: #E1ECF4;
+            color: #39739d;
           }
         }
       }

@@ -21,14 +21,14 @@
 
 <div *ngIf="selectedModeIndex == 1">
   <div class="selected-desc">
-    <p (click)="selectMode(-1)">Go Back</p>
-    <p>selected Mode is {{modes[selectedModeIndex] || 'default'}}</p>
+    <!-- <p (click)="selectMode(-1)">Go Back</p> -->
+    <!-- <p>selected Mode is {{modes[selectedModeIndex] || 'default'}}</p> -->
   </div>
   <div class="wordlist">
     <div class="word-title">
-      <p> My words {{wordlistname}}</p>
+      <p> Selected Wordlist {{wordlistname}}</p>
     </div>
-    <div class="words">
+    <div class="words" #wlist>
       <div class="word-items">
         <div class="word-box" *ngFor="let word of wordlist;let i = index">
           <div class="word" *ngIf="word.name.trim().length > 1" (click)="activeWord(word,i)">
@@ -42,38 +42,40 @@
     </div>
     <div class="word-description">
       <div class="word-desc-head">
-        <div class="word-desc-name">
+        <div *ngIf="wordlist.length" class="word-desc-name">
           <p class="word-desc-word-name">{{wordlist[currentWordIndex].name }}</p>
-          <p class="word-desc-type">{{wordlist[currentWordIndex].type }}</p>
-          <p class="word-desc-pron">{{wordlist[currentWordIndex].pronunciation }}</p>
+          <p *ngIf="wordlist[currentWordIndex]?.type" class="word-desc-type">{{wordlist[currentWordIndex].type }}</p>
+          <p *ngIf="wordlist[currentWordIndex]?.pronunciation" class="word-desc-pron">{{wordlist[currentWordIndex].pronunciation
+            }}</p>
         </div>
         <div class="word-desc-next">
-          <i class="material-icons" (click)="wordPrev()">keyboard_arrow_left</i>
-          <i class="material-icons" (click)="wordNext()">keyboard_arrow_right</i>
+          <i class="left-arrow material-icons" (click)="wordPrev()">keyboard_arrow_left</i>
+          <p class="word-count"> {{currentWordIndex + 1}} of {{wordlist.length}}</p>
+          <i class="right-arrow material-icons" (click)="wordNext()">keyboard_arrow_right</i>
           <!-- <i>{{currentWordIndex}}</i> -->
           <!-- <span class="word-index">{{currentWordIndex}}</span> -->
         </div>
       </div>
       <div class="word-desc-info">
-        <div>
+        <div *ngIf="sentenceSplitter()[0]?.split(':')[1]">
           <p>Definition:</p>
           <p>{{sentenceSplitter()[0].split(':')[1] }}</p>
         </div>
-        <div>
+        <div *ngIf="sentenceSplitter()[2]?.split(':')[1]">
           <p>Usage:</p>
           <p>{{sentenceSplitter()[1].split(':')[1] }}</p>
         </div>
-        <div>
+        <div *ngIf="sentenceSplitter()[2]?.split(':')[1]">
           <p>Related Words:</p>
           <p>{{sentenceSplitter()[2].split(':')[1] }}</p>
         </div>
 
-        <div>
+        <div *ngIf="sentenceSplitter()[3]?.split(':')[1]">
           <p>More Info:</p>
           <p>{{sentenceSplitter()[3].split(':')[1] }}</p>
         </div>
 
-        <div>
+        <div *ngIf="mnemonicSplitter().length">
           <p>Mnemonics:</p>
           <p *ngFor="let mnem of mnemonicSplitter();let i = index">
             {{i+1 + '.' + mnem}}</p>
@@ -95,7 +97,10 @@
         </div>
       </div>
       <div *ngIf="infomode == 1">
-        <img [src]="wordlist[currentWordIndex].imgsrc" alt="">
+        <!-- <img class="image-not-found" (error)="setDefaultImage($event)" src="https://11luuvtufne6f2y33i1nvedi-wpengine.netdna-ssl.com/wp-content/uploads/2017/10/no-image-icon.png"
+          alt=""> -->
+        <img [src]="wordlist[currentWordIndex].imgsrc" default="https://11luuvtufne6f2y33i1nvedi-wpengine.netdna-ssl.com/wp-content/uploads/2017/10/no-image-icon.png"
+          alt="">
       </div>
     </div>
   </div>

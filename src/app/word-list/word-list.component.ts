@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { HttpService } from './../services/http.service';
@@ -21,6 +21,7 @@ export class WordListComponent implements OnInit {
   modes: string[] = ['practice', 'learn'];
   selectedModeIndex: number;
   infomode: number;
+  @ViewChild('wlist') wordlistElement: ElementRef<any>;
 
   constructor(private route: ActivatedRoute, private http: HttpService) {
     this.selectedModeIndex = -1;
@@ -62,6 +63,8 @@ export class WordListComponent implements OnInit {
   wordNext() {
     if (this.wordlist.length > this.currentWordIndex + 1) {
       this.currentWordIndex = this.currentWordIndex + 1;
+      console.log(this.wordlistElement.nativeElement.scrollTop);
+      this.wordlistElement.nativeElement.scrollTop += 48;
       this.fetchImage();
     }
   }
@@ -69,6 +72,8 @@ export class WordListComponent implements OnInit {
   wordPrev() {
     if (this.currentWordIndex - 1 >= 0) {
       this.currentWordIndex = this.currentWordIndex - 1;
+      console.log(this.wordlistElement.nativeElement.scrollTop);
+      this.wordlistElement.nativeElement.scrollTop -= 48;
       this.fetchImage();
     }
   }
@@ -78,11 +83,19 @@ export class WordListComponent implements OnInit {
   }
 
   sentenceSplitter() {
-    return this.wordlist[this.currentWordIndex]['information'].split('\n\n');
+    if (this.wordlist.length) {
+      return this.wordlist[this.currentWordIndex]['information'].split('\n\n');
+    } else {
+      return false;
+    }
   }
 
   mnemonicSplitter() {
-    return this.wordlist[this.currentWordIndex]['mnemonic'].split(/\d\./).slice(1);
+    if (this.wordlist.length) {
+      return this.wordlist[this.currentWordIndex]['mnemonic'].split(/\d\./).slice(1);
+    } else {
+      return false;
+    }
   }
 
   fetchImage() {
@@ -97,5 +110,9 @@ export class WordListComponent implements OnInit {
 
   setInfoMode(val) {
     this.infomode = val;
+  }
+
+  setDefaultImage(val) {
+    alert('faield,');
   }
 }
