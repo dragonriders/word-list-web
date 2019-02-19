@@ -46,6 +46,7 @@ export class RelatedComponent implements OnInit {
       }, (error) => {
 
       });
+    this.selectTab(this.selectedFilterTab[0]);
   }
 
 

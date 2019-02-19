@@ -1,6 +1,6 @@
 <div *ngIf="selectedModeIndex <= 0 " class="wordlist-actions">
   <div class="wordlist-actions-description">
-    <p class="selected-wordlist-name">Selected wordlist is {{wordlistname}}</p>
+    <p class="selected-wordlist-name">Selected wordlist is {{wordlistname.replace('.json','')}}</p>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A, voluptatum quod, tempora asperiores, recusandae
       libero
       dicta iure in labore quam facere laborum tempore reprehenderit distinctio vero rerum! Praesentium, officia
@@ -26,7 +26,7 @@
   </div>
   <div class="wordlist">
     <div class="word-title">
-      <p> Selected Wordlist {{wordlistname}}</p>
+      <p> Selected Wordlist {{wordlistname.replace('.json','')}}</p>
     </div>
     <div class="words" #wlist>
       <div class="word-items">
@@ -58,36 +58,36 @@
       </div>
       <div class="word-desc-info">
         <div *ngIf="sentenceSplitter()[0]?.split(':')[1]">
-          <p>Definition:</p>
-          <p>{{sentenceSplitter()[0].split(':')[1] }}</p>
+          <p><strong>Definition</strong></p>
+          <p class="word-des">{{sentenceSplitter()[0].split(':')[1] }}</p>
         </div>
         <div *ngIf="sentenceSplitter()[2]?.split(':')[1]">
-          <p>Usage:</p>
-          <p>{{sentenceSplitter()[1].split(':')[1] }}</p>
+          <p><strong>Usage</strong></p>
+          <p class="word-des">{{sentenceSplitter()[1].split(':')[1] }}</p>
         </div>
         <div *ngIf="sentenceSplitter()[2]?.split(':')[1]">
-          <p>Related Words:</p>
-          <p>{{sentenceSplitter()[2].split(':')[1] }}</p>
+          <p><strong>Related Words</strong></p>
+          <p class="word-des">{{sentenceSplitter()[2].split(':')[1] }}</p>
         </div>
 
         <div *ngIf="sentenceSplitter()[3]?.split(':')[1]">
-          <p>More Info:</p>
-          <p>{{sentenceSplitter()[3].split(':')[1] }}</p>
+          <p><strong>More Info</strong></p>
+          <p class="word-des">{{sentenceSplitter()[3].split(':')[1] }}</p>
         </div>
 
         <div *ngIf="mnemonicSplitter().length">
-          <p>Mnemonics:</p>
-          <p *ngFor="let mnem of mnemonicSplitter();let i = index">
+          <p><strong>Mnemonics</strong></p>
+          <p class="mnemonics" *ngFor="let mnem of mnemonicSplitter();let i = index">
             {{i+1 + '.' + mnem}}</p>
         </div>
       </div>
     </div>
     <div class="word-info">
       <div class="actions">
-        <div (click)="setInfoMode(0)" class="action">
+        <div (click)="setInfoMode(0)" [class.selected]="infomode == 0" class="action">
           <p>Find Related Words</p>
         </div>
-        <div (click)="setInfoMode(1)" class="action">
+        <div (click)="setInfoMode(1)" [class.selected]="infomode == 1" class="action">
           <p>Show Image</p>
         </div>
       </div>
@@ -96,7 +96,7 @@
           <app-related [searchQuery]="wordlist[currentWordIndex].name"></app-related>
         </div>
       </div>
-      <div *ngIf="infomode == 1">
+      <div *ngIf="infomode == 1" class="word-image">
         <!-- <img class="image-not-found" (error)="setDefaultImage($event)" src="https://11luuvtufne6f2y33i1nvedi-wpengine.netdna-ssl.com/wp-content/uploads/2017/10/no-image-icon.png"
           alt=""> -->
         <img [src]="wordlist[currentWordIndex].imgsrc" default="https://11luuvtufne6f2y33i1nvedi-wpengine.netdna-ssl.com/wp-content/uploads/2017/10/no-image-icon.png"

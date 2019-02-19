@@ -17,8 +17,8 @@
         </div>
       </div>
       <div class="word-list-container">
-        <div *ngFor="let word of sampleList" (click)="selectedWordList(word)">
-          <h4>{{word.name}}</h4>
+        <div class="word" *ngFor="let word of sampleList" (click)="selectedWordList(word)">
+          <p>{{word.name.replace('.json','')}}</p>
         </div>
       </div>
     </div>
