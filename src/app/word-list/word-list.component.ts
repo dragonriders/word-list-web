@@ -1,11 +1,13 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { HttpService } from './../services/http.service';
+import { WordService } from './../services/word.service';
 import { APP_URLS } from './../constants/urls.endpoints';
 import { Observable } from 'rxjs';
 import { APP_CONSTANTS } from '../../config';
-import { WordListItemDirective } from './word-list-item.directive';
+import { Subject } from 'rxjs';
+import { distinctUntilChanged, switchMap, debounceTime, combineAll, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-word-list',
@@ -22,8 +24,10 @@ export class WordListComponent implements OnInit {
   selectedModeIndex: number;
   infomode: number;
   @ViewChild('wlist') wordlistElement: ElementRef<any>;
+  wordImage: Subject<string> = new Subject<string>();
 
-  constructor(private route: ActivatedRoute, private http: HttpService) {
+  constructor(private route: ActivatedRoute, private http: HttpService, private router: Router,
+    private word: WordService) {
     this.selectedModeIndex = -1;
     this.infomode = 0;
   }
@@ -33,31 +37,32 @@ export class WordListComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.wordlistsha = params.id;
       if (this.wordlistsha === '9a304cf0cb4d63718bbf989346ae9b9adf37defa') {
-        this.http.get(APP_URLS.MLAB_DB_URL, { apiKey: APP_CONSTANTS.MLAB_KEY }).subscribe((wordlist: any[]) => {
+        this.word.mlabList().subscribe((wordlist: any[]) => {
           this.wordlist = wordlist;
         }, (error) => {
 
         });
       } else {
-        this.http.get(APP_URLS.MARKETPLACE_URL).subscribe((list: any[]) => {
-          const index = list.findIndex(l => l.sha === this.wordlistsha);
-          this.wordlistname = list[index].name;
-          this.http.get(list[index].download_url).subscribe((wordlist: any[]) => {
-            this.wordlist = wordlist;
+        const list = this.word.marketlist;
+        const index = list.findIndex(l => l.sha === this.wordlistsha);
+        this.wordlistname = list[index].name;
+        this.word.wordlist(this.wordlistsha).subscribe((wordlist: any[]) => {
+          this.wordlist = wordlist;
 
-          }, (error) => {
-
-          });
         }, (error) => {
 
         });
       }
     });
+    this.wordImage.pipe(debounceTime(300), distinctUntilChanged(), map(val => (val))
+    ).subscribe(val => {
+      this.fetchImage(val);
+    });
   }
 
   activeWord(word, index) {
     this.currentWordIndex = index;
-    this.fetchImage();
+    this.wordImage.next(this.wordlist[this.currentWordIndex]['name']);
   }
 
   wordNext() {
@@ -65,7 +70,8 @@ export class WordListComponent implements OnInit {
       this.currentWordIndex = this.currentWordIndex + 1;
       console.log(this.wordlistElement.nativeElement.scrollTop);
       this.wordlistElement.nativeElement.scrollTop += 48;
-      this.fetchImage();
+      this.wordImage.next(this.wordlist[this.currentWordIndex]['name']);
+
     }
   }
 
@@ -74,7 +80,8 @@ export class WordListComponent implements OnInit {
       this.currentWordIndex = this.currentWordIndex - 1;
       console.log(this.wordlistElement.nativeElement.scrollTop);
       this.wordlistElement.nativeElement.scrollTop -= 48;
-      this.fetchImage();
+      this.wordImage.next(this.wordlist[this.currentWordIndex]['name']);
+
     }
   }
 
@@ -98,8 +105,8 @@ export class WordListComponent implements OnInit {
     }
   }
 
-  fetchImage() {
-    const word = this.wordlist[this.currentWordIndex]['name'];
+  fetchImage(word) {
+    // const word = this.wordlist[this.currentWordIndex]['name'];
     this.http.get(`${APP_URLS.WORD_IMG_URL}${word}`, null,
       { headers: { 'Accept': 'application/json' } }).subscribe((image: any) => {
         this.wordlist[this.currentWordIndex]['imgsrc'] = image.href;
@@ -114,5 +121,10 @@ export class WordListComponent implements OnInit {
 
   setDefaultImage(val) {
     alert('faield,');
+  }
+
+  enterPracticeMode() {
+    this.selectMode(0);
+    this.router.navigate(['practice', { id: this.wordlistsha, name: this.wordlistname }]);
   }
 }

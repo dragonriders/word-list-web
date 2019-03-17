@@ -3,7 +3,7 @@ import { HttpService } from './../services/http.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { APP_URLS } from './../constants/urls.endpoints';
-
+import { WordService } from './../services/word.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -16,13 +16,15 @@ export class HomeComponent implements OnInit {
   wordListInput: string;
   sampleList: any[];
 
-  constructor(private http: HttpService, private router: Router, private route: ActivatedRoute) {
+  constructor(private http: HttpService, private router: Router, private route: ActivatedRoute,
+    private word: WordService) {
     this.wordListCreateFlag = false;
   }
 
   ngOnInit() {
-    this.http.get(APP_URLS.MARKETPLACE_URL).subscribe((sampleList: any) => {
+    this.word.fetchMarketList().subscribe((sampleList: any) => {
       this.sampleList = sampleList;
+      this.word.marketlist = sampleList;
       this.sampleList.unshift({
         name: 'default list',
         sha: '9a304cf0cb4d63718bbf989346ae9b9adf37defa'

@@ -1,0 +1,64 @@
+<div class="practice">
+  <div class="practice-head-container">
+    <mat-progress-bar mode="determinate" value="50"></mat-progress-bar>
+    <div class="title">
+      <h1>{{selectedWordlist?.name.replace('.json','')}}</h1>
+    </div>
+  </div>
+  <div class="practice-content">
+    <div class="left-pane">
+
+    </div>
+    <div class="right-pane">
+      <div class="word-container">
+        <div class="word-name-info">
+          <h1>{{wordlist[currIndex].name}}</h1>
+          <div class="word-meta">
+            <div class="word-meta-type">
+              <h4>{{wordlist[currIndex].type}}</h4>
+            </div>
+            <div class="word-meta-pron">
+              <h4>{{wordlist[currIndex].pronunciation}}</h4>
+            </div>
+          </div>
+        </div>
+        <div class="word-info-show">
+          <div class="info-actions">
+            <button (click)="showWordInfo()"> show info</button>
+            <button (click)="randomWord()">Next</button>
+            <button (click)="prevWord()">previous</button>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div *ngIf="WordInfoState" class="word-desc-info">
+          <div *ngIf="sentenceSplitter()[0]?.split(':')[1]">
+            <p><strong>Definition</strong></p>
+            <p class="word-des">{{sentenceSplitter()[0].split(':')[1] }}</p>
+          </div>
+          <div *ngIf="sentenceSplitter()[2]?.split(':')[1]">
+            <p><strong>Usage</strong></p>
+            <p class="word-des">{{sentenceSplitter()[1].split(':')[1] }}</p>
+          </div>
+          <div *ngIf="sentenceSplitter()[2]?.split(':')[1]">
+            <p><strong>Related Words</strong></p>
+            <p class="word-des">{{sentenceSplitter()[2].split(':')[1] }}</p>
+          </div>
+
+          <div *ngIf="sentenceSplitter()[3]?.split(':')[1]">
+            <p><strong>More Info</strong></p>
+            <p class="word-des">{{sentenceSplitter()[3].split(':')[1] }}</p>
+          </div>
+
+          <div *ngIf="mnemonicSplitter().length">
+            <p><strong>Mnemonics</strong></p>
+            <p class="mnemonics" *ngFor="let mnem of mnemonicSplitter();let i = index">
+              {{i+1 + '.' + mnem}}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

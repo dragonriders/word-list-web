@@ -1,0 +1,30 @@
+.practice {
+  .left-pane {
+    display: inline-block;
+    width: 30%;
+  }
+
+  .right-pane {
+    display: inline-block;
+    width: 70%;
+  }
+}
+
+
+.practice {
+  .practice-content {
+    .word-container {
+
+      .word-name-info,
+      .word-info-show {
+        display: inline-block;
+      }
+
+      .word-meta {
+        div {
+          display: inline-block;
+        }
+      }
+    }
+  }
+}

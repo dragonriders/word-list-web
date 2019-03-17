@@ -7,7 +7,7 @@ import { MaterialModule } from './material/material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { PracticeComponent } from './practice/practice.component';
+import { PracticeComponent } from './word-list/practice/practice.component';
 import { WordnavComponent } from './wordnav/wordnav.component';
 import { RelatedComponent } from './related/related.component';
 import { MarketplaceComponent } from './marketplace/marketplace.component';
