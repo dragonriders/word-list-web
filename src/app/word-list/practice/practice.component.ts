@@ -15,8 +15,10 @@ export class PracticeComponent implements OnInit {
   currIndex: number;
   prevIndex: number;
   WordInfoState: boolean;
+  totalWordRead: number;
   constructor(private route: ActivatedRoute, private wordservice: WordService) {
     this.WordInfoState = false;
+    this.totalWordRead = 0;
   }
 
   ngOnInit() {
@@ -57,6 +59,7 @@ export class PracticeComponent implements OnInit {
   randomWord() {
     this.prevIndex = this.currIndex;
     this.currIndex = Math.floor((Math.random() * this.wordlist.length) + 1);
+    this.totalWordRead++;
   }
 
   prevWord() {

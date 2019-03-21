@@ -5,26 +5,153 @@
   }
 
   .right-pane {
-    display: inline-block;
-    width: 70%;
+    // display: inline-block;
+    // width: 70%;
+    // margin: 0 auto;
   }
 }
 
 
 .practice {
+  .practice-head-container {
+    .title>* {
+      display: inline-block;
+      margin: 0.3em 0;
+    }
+
+    .title {
+      .wordlist-count {
+        float: right;
+      }
+    }
+  }
+
   .practice-content {
     .word-container {
+      margin: 0 auto;
+      width: 77%;
+      background: #eaeaea;
+      padding: 0 1em;
 
       .word-name-info,
       .word-info-show {
         display: inline-block;
       }
 
+      .word-info-show {
+        float: right;
+        // margin: 2em 10em;
+
+        .info-actions {
+          .show-info-icon {
+            font-size: 2em;
+            color: cornflowerblue;
+          }
+        }
+      }
+
+      .word-name-info h1 {
+        margin: 0.3em 0;
+      }
+
       .word-meta {
+
         div {
           display: inline-block;
         }
+
+        p {
+          margin: 0.3em 0;
+          margin-right: 1em;
+          padding: 0.1em 1em;
+          border-radius: 5px;
+          color: white;
+          font-size: 18px;
+
+        }
+
+        .word-meta-type p {
+          background: #2775c3;
+        }
+
+        .word-meta-pron p {
+          background: #dc0530;
+        }
       }
+
+      .arrows {
+        display: inline-block;
+        width: 10em;
+
+        i {
+          font-size: 3em;
+        }
+      }
+
+      .left {
+        float: left;
+      }
+
+      .right {
+        float: right;
+      }
+    }
+
+
+    .word-info-container {
+      max-height: 60vh;
+      width: 100%;
+      overflow: auto;
+
+      .word-desc-info {
+        margin: 0 10em;
+      }
+    }
+  }
+
+  .navigators {
+    position: fixed;
+    bottom: 60px;
+
+    div {
+      display: inline-block;
+      width: 49vw;
+    }
+
+    .arrows-container div {
+      background: blue;
+      color: white;
+      width: 130px;
+      border-radius: 42px;
+
+      i {
+        height: inherit;
+        border: 2px solid white;
+        border-radius: 50%;
+        padding: 0.5em;
+      }
+
+      i:hover {
+        font-size: 29px;
+        margin: 0;
+        color: black;
+        background: white;
+      }
+
+      .lft {
+        margin: 5px;
+      }
+
+      .rght {
+        margin: 5px;
+        float: right;
+      }
+
+
+    }
+
+    .arrows-container.right div {
+      float: right;
     }
   }
 }

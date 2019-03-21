@@ -1,37 +1,33 @@
 <div class="practice">
   <div class="practice-head-container">
-    <mat-progress-bar mode="determinate" value="50"></mat-progress-bar>
+    <mat-progress-bar class="progress-color" mode="determinate" [value]="(totalWordRead/wordlist.length)*100"></mat-progress-bar>
     <div class="title">
-      <h1>{{selectedWordlist?.name.replace('.json','')}}</h1>
+      <h1 class="wordlist">{{selectedWordlist?.name.replace('.json','')}}</h1>
+      <h4 class="wordlist-count">Words read {{totalWordRead}} / {{wordlist.length}}</h4>
     </div>
   </div>
   <div class="practice-content">
-    <div class="left-pane">
-
-    </div>
     <div class="right-pane">
       <div class="word-container">
         <div class="word-name-info">
           <h1>{{wordlist[currIndex].name}}</h1>
           <div class="word-meta">
             <div class="word-meta-type">
-              <h4>{{wordlist[currIndex].type}}</h4>
+              <p>{{wordlist[currIndex].type}}</p>
             </div>
             <div class="word-meta-pron">
-              <h4>{{wordlist[currIndex].pronunciation}}</h4>
+              <p>{{wordlist[currIndex].pronunciation}}</p>
             </div>
           </div>
         </div>
         <div class="word-info-show">
           <div class="info-actions">
-            <button (click)="showWordInfo()"> show info</button>
-            <button (click)="randomWord()">Next</button>
-            <button (click)="prevWord()">previous</button>
+            <i class="material-icons show-info-icon" (click)="showWordInfo()">info</i>
           </div>
         </div>
       </div>
 
-      <div>
+      <div class="word-info-container">
         <div *ngIf="WordInfoState" class="word-desc-info">
           <div *ngIf="sentenceSplitter()[0]?.split(':')[1]">
             <p><strong>Definition</strong></p>
@@ -59,6 +55,14 @@
         </div>
       </div>
 
+    </div>
+  </div>
+  <div class="navigators">
+    <div class="arrows-container right">
+      <div (click)="randomWord()">
+        <i class="material-icons lft" (click)="prevWord()">arrow_back</i>
+        <i class="material-icons rght" (click)="randomWord()">arrow_forward</i>
+      </div>
     </div>
   </div>
 </div>
