@@ -119,16 +119,19 @@
     }
 
     .arrows-container div {
-      background: blue;
+      background: cornflowerblue;
       color: white;
       width: 130px;
       border-radius: 42px;
+      cursor: move;
+      position: absolute;
 
       i {
         height: inherit;
         border: 2px solid white;
         border-radius: 50%;
         padding: 0.5em;
+        cursor: pointer;
       }
 
       i:hover {

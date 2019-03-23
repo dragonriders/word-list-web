@@ -35,7 +35,11 @@ export class WordService {
 
   private fetchWordlist(wordlistId) {
     const index = this.market.findIndex(l => l.sha === wordlistId);
-    return this.http.get(this.market[index].download_url);
+    if (index === -1) {
+      return this.defaultMLAB_DB();
+    } else {
+      return this.http.get(this.market[index].download_url);
+    }
   }
 
   private defaultMLAB_DB() {

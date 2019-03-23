@@ -1,9 +1,10 @@
 <div class="practice">
   <div class="practice-head-container">
-    <mat-progress-bar class="progress-color" mode="determinate" [value]="(totalWordRead/wordlist.length)*100"></mat-progress-bar>
+    <mat-progress-bar class="progress-color" mode="determinate" [value]="(totalWordRead/wordlist?.length)*100">
+    </mat-progress-bar>
     <div class="title">
       <h1 class="wordlist">{{selectedWordlist?.name.replace('.json','')}}</h1>
-      <h4 class="wordlist-count">Words read {{totalWordRead}} / {{wordlist.length}}</h4>
+      <h4 class="wordlist-count">Words read {{totalWordRead}} / {{wordlist?.length}}</h4>
     </div>
   </div>
   <div class="practice-content">
@@ -59,7 +60,7 @@
   </div>
   <div class="navigators">
     <div class="arrows-container right">
-      <div (click)="randomWord()">
+      <div (click)="randomWord()" appDraggable>
         <i class="material-icons lft" (click)="prevWord()">arrow_back</i>
         <i class="material-icons rght" (click)="randomWord()">arrow_forward</i>
       </div>

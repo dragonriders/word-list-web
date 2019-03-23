@@ -39,6 +39,7 @@ export class WordListComponent implements OnInit {
       if (this.wordlistsha === '9a304cf0cb4d63718bbf989346ae9b9adf37defa') {
         this.word.mlabList().subscribe((wordlist: any[]) => {
           this.wordlist = wordlist;
+          this.wordlistname = 'Default List';
         }, (error) => {
 
         });
