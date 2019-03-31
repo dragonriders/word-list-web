@@ -9,6 +9,7 @@ body {
   margin: 0;
   font-family: $font-stack;
   color: $primary-color;
+  background: $background-color;
 }
 
 .mat-progress-bar-primary.mat-progress-bar-fill::after {

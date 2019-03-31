@@ -1,0 +1,41 @@
+@import './../../../variables';
+
+@media screen and (min-width:map-get($grid-breakpoints, md)) {}
+
+
+@media screen and (orientation:portrait) and (min-width:map-get($grid-breakpoints, xxs))and (max-width:map-get($grid-breakpoints, xs)) {}
+
+.skeleton-actions {
+  width: 80%;
+  margin: 0 auto;
+
+  .add {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    background: white;
+    float: right;
+    margin: 1em;
+  }
+}
+
+.home-skeleton-container {
+  clear: both;
+  width: 80%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 10em;
+  grid-gap: 3em;
+  margin: 0 auto;
+
+  .word {
+    background: white;
+
+    p {
+      background: #fafafa;
+      color: #fafafa;
+      margin: 1em;
+      font-size: 2em;
+    }
+  }
+}

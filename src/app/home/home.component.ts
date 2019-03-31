@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from './../services/http.service';
 import { Router, ActivatedRoute } from '@angular/router';
-
 import { APP_URLS } from './../constants/urls.endpoints';
 import { WordService } from './../services/word.service';
+import { log } from 'util';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
 
@@ -23,12 +24,14 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.word.fetchMarketList().subscribe((sampleList: any) => {
-      this.sampleList = sampleList;
-      this.word.marketlist = sampleList;
-      this.sampleList.unshift({
-        name: 'default list',
-        sha: '9a304cf0cb4d63718bbf989346ae9b9adf37defa'
-      });
+      setTimeout(() => {
+        this.sampleList = sampleList;
+        this.word.marketlist = sampleList;
+        this.sampleList.unshift({
+          name: 'default list',
+          sha: '9a304cf0cb4d63718bbf989346ae9b9adf37defa'
+        });
+      }, 5000);
     }, (error) => {
 
     });
@@ -40,12 +43,22 @@ export class HomeComponent implements OnInit {
 
   createWordList() {
     if (this.wordListInput.trim().length) {
-      this.wordList.push({ name: this.wordListInput });
+      // this.wordList.push({ name: this.wordListInput });
+      this.sampleList.push({ name: this.wordListInput });
       this.wordListInput = '';
+      this.wordListCreateFlag = false;
     }
   }
 
   selectedWordList(wordList) {
     this.router.navigate([wordList.sha]);
+  }
+
+  handleEnter(event) {
+    log(event.keyCode);
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      this.createWordList();
+    }
   }
 }

@@ -1,26 +1,30 @@
 <main role="main" class="app-main">
   <div class="app-main-front">
-    <div class="left-pane"></div>
+    <!-- <div class="left-pane"></div> -->
     <div class="right-pane">
-      <div class="wordlist-actions">
+      <div *ngIf="sampleList?.length" class="wordlist-actions">
         <div *ngIf="!wordListCreateFlag" class="wordlist-create">
-          <button (click)="setWordListFlag()">Create Word List</button>
+          <!-- <button >Create Word List</button> -->
+          <i matTooltip="Add the wordlist" class="material-icons" (click)="setWordListFlag()">add</i>
         </div>
         <div class="wordlist-input" *ngIf="wordListCreateFlag">
           <div class="wordlist-box">
-            <input type="text" [(ngModel)]="wordListInput">
+            <input (keyup)="handleEnter($event)" type="text" [(ngModel)]="wordListInput">
             <div class="wordlist-box-actions">
-              <button (click)="createWordList()">create</button>
-              <button (click)="setWordListFlag()">cancel</button>
+              <!-- <button (click)="createWordList()">create</button> -->
+              <i matTooltip="Create wordlist" class="material-icons create-wordlist" (click)="createWordList()">done</i>
+              <i matTooltip="Cancel" class="material-icons cancel-wordlist" (click)="setWordListFlag()">close</i>
+              <!-- <button (click)="setWordListFlag()">cancel</button> -->
             </div>
           </div>
         </div>
       </div>
-      <div class="word-list-container">
+      <div *ngIf="sampleList?.length" class="word-list-container">
         <div class="word" *ngFor="let word of sampleList" (click)="selectedWordList(word)">
           <p>{{word.name.replace('.json','')}}</p>
         </div>
       </div>
+      <app-home-skeleton *ngIf="sampleList === undefined"></app-home-skeleton>
     </div>
   </div>
 </main>

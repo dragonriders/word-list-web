@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MaterialModule } from './material/material.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +16,7 @@ import { WordListComponent } from './word-list/word-list.component';
 import { WordListItemDirective } from './word-list/word-list-item.directive';
 import { ImagePreloadDirective } from './word-list/image-preload.directive';
 import { DraggableDirective } from './word-list/practice/draggable.directive';
+import { HomeSkeletonComponent } from './home/home.skeleton/home.skeleton.component';
 
 @NgModule({
   declarations: [
@@ -25,18 +27,20 @@ import { DraggableDirective } from './word-list/practice/draggable.directive';
     RelatedComponent,
     MarketplaceComponent,
     WordListComponent,
+    HomeSkeletonComponent,
     WordListItemDirective,
     ImagePreloadDirective,
     DraggableDirective,
-
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
+    BrowserAnimationsModule
   ],
+  // exports: [HomeSkeletonComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
