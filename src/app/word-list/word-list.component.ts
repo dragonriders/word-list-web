@@ -23,13 +23,16 @@ export class WordListComponent implements OnInit {
   modes: string[] = ['practice', 'learn'];
   selectedModeIndex: number;
   infomode: number;
-  @ViewChild('wlist') wordlistElement: ElementRef<any>;
-  wordImage: Subject<string> = new Subject<string>();
+  loading: boolean;
+
+  // @ViewChild('wlist') wordlistElement: ElementRef<any>;
+  // wordImage: Subject<string> = new Subject<string>();
 
   constructor(private route: ActivatedRoute, private http: HttpService, private router: Router,
     private word: WordService) {
     this.selectedModeIndex = -1;
     this.infomode = 0;
+    this.loading = true;
   }
 
   ngOnInit() {
@@ -40,6 +43,7 @@ export class WordListComponent implements OnInit {
         this.word.mlabList().subscribe((wordlist: any[]) => {
           this.wordlist = wordlist;
           this.wordlistname = 'Default List';
+          this.loading = false;
         }, (error) => {
 
         });
@@ -49,83 +53,88 @@ export class WordListComponent implements OnInit {
         this.wordlistname = list[index].name;
         this.word.wordlist(this.wordlistsha).subscribe((wordlist: any[]) => {
           this.wordlist = wordlist;
-
+          this.loading = false;
         }, (error) => {
 
         });
       }
     });
-    this.wordImage.pipe(debounceTime(300), distinctUntilChanged(), map(val => (val))
-    ).subscribe(val => {
-      this.fetchImage(val);
-    });
+    // this.wordImage.pipe(debounceTime(300), distinctUntilChanged(), map(val => (val))
+    // ).subscribe(val => {
+    // this.fetchImage(val);
+    // });
   }
 
-  activeWord(word, index) {
-    this.currentWordIndex = index;
-    this.wordImage.next(this.wordlist[this.currentWordIndex]['name']);
-  }
+  // activeWord(word, index) {
+  //   this.currentWordIndex = index;
+  //   this.wordImage.next(this.wordlist[this.currentWordIndex]['name']);
+  // }
 
-  wordNext() {
-    if (this.wordlist.length > this.currentWordIndex + 1) {
-      this.currentWordIndex = this.currentWordIndex + 1;
-      console.log(this.wordlistElement.nativeElement.scrollTop);
-      this.wordlistElement.nativeElement.scrollTop += 48;
-      this.wordImage.next(this.wordlist[this.currentWordIndex]['name']);
+  // wordNext() {
+  //   if (this.wordlist.length > this.currentWordIndex + 1) {
+  //     this.currentWordIndex = this.currentWordIndex + 1;
+  //     console.log(this.wordlistElement.nativeElement.scrollTop);
+  //     this.wordlistElement.nativeElement.scrollTop += 48;
+  //     this.wordImage.next(this.wordlist[this.currentWordIndex]['name']);
 
-    }
-  }
+  //   }
+  // }
 
-  wordPrev() {
-    if (this.currentWordIndex - 1 >= 0) {
-      this.currentWordIndex = this.currentWordIndex - 1;
-      console.log(this.wordlistElement.nativeElement.scrollTop);
-      this.wordlistElement.nativeElement.scrollTop -= 48;
-      this.wordImage.next(this.wordlist[this.currentWordIndex]['name']);
+  // wordPrev() {
+  //   if (this.currentWordIndex - 1 >= 0) {
+  //     this.currentWordIndex = this.currentWordIndex - 1;
+  //     console.log(this.wordlistElement.nativeElement.scrollTop);
+  //     this.wordlistElement.nativeElement.scrollTop -= 48;
+  //     this.wordImage.next(this.wordlist[this.currentWordIndex]['name']);
 
-    }
-  }
+  //   }
+  // }
 
   selectMode(index: number) {
     this.selectedModeIndex = index;
   }
 
-  sentenceSplitter() {
-    if (this.wordlist.length) {
-      return this.wordlist[this.currentWordIndex]['information'].split('\n\n');
-    } else {
-      return false;
-    }
-  }
+  // sentenceSplitter() {
+  //   if (this.wordlist.length) {
+  //     return this.wordlist[this.currentWordIndex]['information'].split('\n\n');
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
-  mnemonicSplitter() {
-    if (this.wordlist.length) {
-      return this.wordlist[this.currentWordIndex]['mnemonic'].split(/\d\./).slice(1);
-    } else {
-      return false;
-    }
-  }
+  // mnemonicSplitter() {
+  //   if (this.wordlist.length) {
+  //     return this.wordlist[this.currentWordIndex]['mnemonic'].split(/\d\./).slice(1);
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
-  fetchImage(word) {
-    // const word = this.wordlist[this.currentWordIndex]['name'];
-    this.http.get(`${APP_URLS.WORD_IMG_URL}${word}`, null,
-      { headers: { 'Accept': 'application/json' } }).subscribe((image: any) => {
-        this.wordlist[this.currentWordIndex]['imgsrc'] = image.href;
-      }, error => {
+  // fetchImage(word) {
+  //   // const word = this.wordlist[this.currentWordIndex]['name'];
+  //   this.http.get(`${APP_URLS.WORD_IMG_URL}${word}`, null,
+  //     { headers: { 'Accept': 'application/json' } }).subscribe((image: any) => {
+  //       this.wordlist[this.currentWordIndex]['imgsrc'] = image.href;
+  //     }, error => {
 
-      });
-  }
+  //     });
+  // }
 
-  setInfoMode(val) {
-    this.infomode = val;
-  }
+  // setInfoMode(val) {
+  //   this.infomode = val;
+  // }
 
-  setDefaultImage(val) {
-    alert('faield,');
-  }
+  // setDefaultImage(val) {
+  //   alert('faield,');
+  // }
 
   enterPracticeMode() {
     this.selectMode(0);
     this.router.navigate(['practice', { id: this.wordlistsha, name: this.wordlistname }]);
+  }
+
+  enterLearnMode() {
+    this.selectMode(1);
+    this.router.navigate(['learn', { id: this.wordlistsha, name: this.wordlistname }]);
   }
 }

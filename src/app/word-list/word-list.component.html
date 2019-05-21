@@ -1,5 +1,5 @@
 <div *ngIf="selectedModeIndex <= 0 " class="wordlist-actions">
-  <div class="wordlist-actions-description">
+  <div class="wordlist-actions-description" [ngClass]="{'skeleton':loading}">
     <p class="selected-wordlist-name">Selected wordlist is {{wordlistname.replace('.json','')}}</p>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A, voluptatum quod, tempora asperiores, recusandae
       libero
@@ -9,99 +9,13 @@
       recusandae dolor quo nulla excepturi. Corrupti odio hic consequuntur esse perferendis inventore laudantium
       necessitatibus temporibus nostrum.</p>
   </div>
-  <div class="wordlist-actions-container-btn">
+
+  <div class="wordlist-actions-container-btn " [ngClass]="{'skeleton':loading}">
     <div class="wordlist-practice-blk">
       <button (click)="enterPracticeMode()">Practice</button>
     </div>
     <div class="wordlist-learn-blk">
-      <button (click)="selectMode(1)">Learn</button>
-    </div>
-  </div>
-</div>
-
-<div *ngIf="selectedModeIndex == 1">
-  <div class="selected-desc">
-    <!-- <p (click)="selectMode(-1)">Go Back</p> -->
-    <!-- <p>selected Mode is {{modes[selectedModeIndex] || 'default'}}</p> -->
-  </div>
-  <div class="wordlist">
-    <div class="word-title">
-      <p> Selected Wordlist {{wordlistname.replace('.json','')}}</p>
-    </div>
-    <div class="words" #wlist>
-      <div class="word-items">
-        <div class="word-box" *ngFor="let word of wordlist;let i = index">
-          <div class="word" *ngIf="word.name.trim().length > 1" (click)="activeWord(word,i)">
-            <div class="word-active" *ngIf="currentWordIndex == i"></div>
-            <div class="word-content">
-              <p>{{word.name}}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="word-description">
-      <div class="word-desc-head">
-        <div *ngIf="wordlist.length" class="word-desc-name">
-          <p class="word-desc-word-name">{{wordlist[currentWordIndex].name }}</p>
-          <p *ngIf="wordlist[currentWordIndex]?.type" class="word-desc-type">{{wordlist[currentWordIndex].type }}</p>
-          <p *ngIf="wordlist[currentWordIndex]?.pronunciation" class="word-desc-pron">{{wordlist[currentWordIndex].pronunciation
-            }}</p>
-        </div>
-        <div class="word-desc-next">
-          <i class="left-arrow material-icons" (click)="wordPrev()">keyboard_arrow_left</i>
-          <p class="word-count"> {{currentWordIndex + 1}} of {{wordlist.length}}</p>
-          <i class="right-arrow material-icons" (click)="wordNext()">keyboard_arrow_right</i>
-          <!-- <i>{{currentWordIndex}}</i> -->
-          <!-- <span class="word-index">{{currentWordIndex}}</span> -->
-        </div>
-      </div>
-      <div class="word-desc-info">
-        <div *ngIf="sentenceSplitter()[0]?.split(':')[1]">
-          <p><strong>Definition</strong></p>
-          <p class="word-des">{{sentenceSplitter()[0].split(':')[1] }}</p>
-        </div>
-        <div *ngIf="sentenceSplitter()[2]?.split(':')[1]">
-          <p><strong>Usage</strong></p>
-          <p class="word-des">{{sentenceSplitter()[1].split(':')[1] }}</p>
-        </div>
-        <div *ngIf="sentenceSplitter()[2]?.split(':')[1]">
-          <p><strong>Related Words</strong></p>
-          <p class="word-des">{{sentenceSplitter()[2].split(':')[1] }}</p>
-        </div>
-
-        <div *ngIf="sentenceSplitter()[3]?.split(':')[1]">
-          <p><strong>More Info</strong></p>
-          <p class="word-des">{{sentenceSplitter()[3].split(':')[1] }}</p>
-        </div>
-
-        <div *ngIf="mnemonicSplitter().length">
-          <p><strong>Mnemonics</strong></p>
-          <p class="mnemonics" *ngFor="let mnem of mnemonicSplitter();let i = index">
-            {{i+1 + '.' + mnem}}</p>
-        </div>
-      </div>
-    </div>
-    <div class="word-info">
-      <div class="actions">
-        <div (click)="setInfoMode(0)" [class.selected]="infomode == 0" class="action">
-          <p>Find Related Words</p>
-        </div>
-        <div (click)="setInfoMode(1)" [class.selected]="infomode == 1" class="action">
-          <p>Show Image</p>
-        </div>
-      </div>
-      <div *ngIf="infomode == 0" class="related-breadcrumb">
-        <div class="breadcrumb-data">
-          <app-related [searchQuery]="wordlist[currentWordIndex].name"></app-related>
-        </div>
-      </div>
-      <div *ngIf="infomode == 1" class="word-image">
-        <!-- <img class="image-not-found" (error)="setDefaultImage($event)" src="https://11luuvtufne6f2y33i1nvedi-wpengine.netdna-ssl.com/wp-content/uploads/2017/10/no-image-icon.png"
-          alt=""> -->
-        <img [src]="wordlist[currentWordIndex].imgsrc" default="https://11luuvtufne6f2y33i1nvedi-wpengine.netdna-ssl.com/wp-content/uploads/2017/10/no-image-icon.png"
-          alt="">
-      </div>
+      <button (click)="enterLearnMode(1)">Learn</button>
     </div>
   </div>
 </div>

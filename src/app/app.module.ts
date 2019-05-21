@@ -17,12 +17,14 @@ import { WordListItemDirective } from './word-list/word-list-item.directive';
 import { ImagePreloadDirective } from './word-list/image-preload.directive';
 import { DraggableDirective } from './word-list/practice/draggable.directive';
 import { HomeSkeletonComponent } from './home/home.skeleton/home.skeleton.component';
+import { LearnComponent } from './word-list/learn/learn.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     PracticeComponent,
+    LearnComponent,
     WordnavComponent,
     RelatedComponent,
     MarketplaceComponent,
@@ -40,7 +42,6 @@ import { HomeSkeletonComponent } from './home/home.skeleton/home.skeleton.compon
     MaterialModule,
     BrowserAnimationsModule
   ],
-  // exports: [HomeSkeletonComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

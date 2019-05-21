@@ -24,14 +24,12 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.word.fetchMarketList().subscribe((sampleList: any) => {
-      setTimeout(() => {
-        this.sampleList = sampleList;
-        this.word.marketlist = sampleList;
-        this.sampleList.unshift({
-          name: 'default list',
-          sha: '9a304cf0cb4d63718bbf989346ae9b9adf37defa'
-        });
-      }, 5000);
+      this.sampleList = sampleList;
+      this.word.marketlist = sampleList;
+      this.sampleList.unshift({
+        name: 'default list',
+        sha: '9a304cf0cb4d63718bbf989346ae9b9adf37defa'
+      });
     }, (error) => {
 
     });
@@ -44,7 +42,7 @@ export class HomeComponent implements OnInit {
   createWordList() {
     if (this.wordListInput.trim().length) {
       // this.wordList.push({ name: this.wordListInput });
-      this.sampleList.push({ name: this.wordListInput });
+      this.sampleList.unshift({ name: this.wordListInput });
       this.wordListInput = '';
       this.wordListCreateFlag = false;
     }

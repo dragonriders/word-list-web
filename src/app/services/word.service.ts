@@ -10,7 +10,11 @@ import { APP_CONSTANTS } from '../../config';
 
 export class WordService {
   market: any = [];
-  constructor(private http: HttpService) { }
+
+  constructor(private http: HttpService) {
+    console.log('word service called');
+    this.fetchMarketList().subscribe(marketlist => this.market = marketlist);
+  }
 
   get marketlist() {
     return this.market;

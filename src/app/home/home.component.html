@@ -9,7 +9,8 @@
         </div>
         <div class="wordlist-input" *ngIf="wordListCreateFlag">
           <div class="wordlist-box">
-            <input (keyup)="handleEnter($event)" type="text" [(ngModel)]="wordListInput">
+            <input placeholder="enter the word list name here" (keyup)="handleEnter($event)" type="text"
+              [(ngModel)]="wordListInput">
             <div class="wordlist-box-actions">
               <!-- <button (click)="createWordList()">create</button> -->
               <i matTooltip="Create wordlist" class="material-icons create-wordlist" (click)="createWordList()">done</i>
